@@ -14,36 +14,150 @@
       font-family: 'Inter', sans-serif;
     }
     body {
-      background: linear-gradient(to bottom right, #ff6a00, #ff3c00, #ff0080);
+      background: linear-gradient(to bottom right, #1a1a2e, #16213e, #0f3460);
       color: white;
       line-height: 1.6;
       scroll-behavior: smooth;
       overflow-x: hidden;
     }
+    /* Theme Toggle Button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1002;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      border: 2px solid rgba(255,255,255,0.3);
+    }
+    .theme-toggle:hover {
+      transform: scale(1.1);
+      background: rgba(255,255,255,0.2);
+    }
+    .theme-toggle i {
+      font-size: 1.2rem;
+      color: white;
+    }
+    /* Profile Picture Button */
+    .profile-btn {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: linear-gradient(to right, #2563eb, #3b82f6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 1001;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.2s ease;
+      overflow: hidden;
+      border: 3px solid white;
+      opacity: 1;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .profile-btn.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .profile-btn:hover {
+      transform: scale(1.1);
+    }
+    .profile-btn img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    /* Left Slider Panel */
+    .name-panel {
+      width: 320px;
+      background: linear-gradient(to bottom, #1a1a2e, #16213e);
+      padding: 40px 20px;
+      position: fixed;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      box-shadow: 5px 0 15px rgba(0,0,0,0.2);
+      z-index: 1000;
+      transform: translateX(-100%);
+      transition: transform 0.2s ease-out;
+    }
+    .name-panel.active {
+      transform: translateX(0);
+    }
+    .profile-image-container {
+      width: 180px;
+      height: 180px;
+      border-radius: 20px;
+      overflow: hidden;
+      margin-bottom: 25px;
+      border: 3px solid white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .profile-image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .name-panel h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #3b82f6, #93c5fd);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+    .name-panel p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    .name-panel .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+    .name-panel .social-links a {
+      color: white;
+      font-size: 1.5rem;
+      transition: transform 0.2s ease, color 0.2s ease;
+    }
+    .name-panel .social-links a:hover {
+      transform: translateY(-3px);
+      color: #3b82f6;
+    }
+    /* Main Content */
+    .main-content {
+      width: 100%;
+      transition: margin-left 0.2s ease-out;
+    }
+    .main-content.shifted {
+      margin-left: 320px;
+    }
     header {
-      padding: 80px 20px 40px;
+      padding: 40px 20px;
       text-align: center;
       position: sticky;
       top: 0;
-      background: linear-gradient(to right, rgba(255, 60, 0, 0.95), rgba(255, 105, 135, 0.95));
+      background: linear-gradient(to right, rgba(26, 26, 46, 0.95), rgba(22, 33, 62, 0.95));
       z-index: 100;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
       backdrop-filter: blur(5px);
     }
-    header h1 {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 800;
-      background: linear-gradient(to right, #fff200, #ff0080);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
     nav {
-      margin-top: 20px;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -54,16 +168,16 @@
       text-decoration: none;
       color: #fff;
       font-weight: 600;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       border-radius: 8px;
     }
     nav a:hover {
-      color: #ffe400;
+      color: #3b82f6;
       background: rgba(255,255,255,0.1);
     }
     section {
       padding: 80px 20px;
-      max-width: 1200px;
+      max-width: 1100px;
       margin: auto;
     }
     h2 {
@@ -71,14 +185,14 @@
       margin-bottom: 20px;
       font-weight: 700;
       text-align: center;
-      background: linear-gradient(to right, #ffe400, #ff007f);
+      background: linear-gradient(to right, #3b82f6, #93c5fd);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
     h3 {
       font-size: 1.5rem;
       margin-bottom: 15px;
-      color: #ffe400;
+      color: #3b82f6;
     }
     p, li {
       font-size: 1.1rem;
@@ -89,17 +203,17 @@
       margin-top: 20px;
       padding: 12px 28px;
       background: white;
-      color: #ff4500;
+      color: #2563eb;
       border: none;
       font-weight: bold;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
       text-decoration: none;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     .button:hover {
-      background: #ffe5dc;
+      background: #e0e7ff;
       transform: translateY(-2px);
       box-shadow: 0 6px 8px rgba(0,0,0,0.15);
     }
@@ -127,7 +241,7 @@
       backdrop-filter: blur(12px);
       border: 1px solid rgba(255,255,255,0.2);
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
-      transition: all 0.3s ease;
+      transition: all 0.2s ease;
     }
     .card:hover {
       transform: translateY(-10px);
@@ -146,15 +260,15 @@
       font-size: 0.8rem;
     }
     a {
-      color: #fff;
+      color: #93c5fd;
       text-decoration: underline;
-      transition: color 0.3s ease;
+      transition: color 0.2s ease;
     }
     a:hover {
-      color: #ffe400;
+      color: #3b82f6;
     }
     footer {
-      background: linear-gradient(to right, #ff3c00, #ff007f);
+      background: linear-gradient(to right, #1a1a2e, #16213e);
       text-align: center;
       padding: 40px 20px;
       margin-top: 80px;
@@ -162,7 +276,7 @@
     .section-divider {
       height: 4px;
       width: 80px;
-      background: white;
+      background: #3b82f6;
       margin: 20px auto 40px;
       border-radius: 10px;
     }
@@ -175,12 +289,12 @@
     .social-links a {
       font-size: 1.5rem;
       color: white;
-      transition: transform 0.3s ease;
+      transition: transform 0.2s ease;
       text-decoration: none;
     }
     .social-links a:hover {
       transform: translateY(-5px);
-      color: #ffe400;
+      color: #3b82f6;
     }
     .project-links {
       margin-top: 15px;
@@ -214,7 +328,7 @@
       position: absolute;
       width: 20px;
       height: 20px;
-      background: #ffe400;
+      background: #3b82f6;
       border-radius: 50%;
       top: 15px;
       z-index: 1;
@@ -238,9 +352,10 @@
       backdrop-filter: blur(5px);
     }
     .timeline-date {
-      color: #ffe400;
+      color: #3b82f6;
       font-weight: 600;
     }
+    /* Mobile Responsiveness */
     @media screen and (max-width: 768px) {
       .timeline::after {
         left: 31px;
@@ -259,185 +374,301 @@
       .right {
         left: 0;
       }
+      .name-panel {
+        width: 280px;
+      }
+      .main-content.shifted {
+        margin-left: 280px;
+      }
+      .profile-btn {
+        width: 50px;
+        height: 50px;
+      }
+      .profile-image-container {
+        width: 150px;
+        height: 150px;
+      }
+    }
+    /* Light Theme Styles */
+    body.light-theme {
+      background: linear-gradient(to bottom right, #f0f9ff, #e0f2fe, #bae6fd);
+      color: #1e3a8a;
+    }
+    body.light-theme header {
+      background: linear-gradient(to right, rgba(224, 242, 254, 0.95), rgba(186, 230, 253, 0.95));
+    }
+    body.light-theme .name-panel {
+      background: linear-gradient(to bottom, #e0f2fe, #bae6fd);
+    }
+    body.light-theme .card {
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid rgba(30, 58, 138, 0.1);
+    }
+    body.light-theme .timeline-content {
+      background: rgba(255, 255, 255, 0.7);
+    }
+    body.light-theme footer {
+      background: linear-gradient(to right, #e0f2fe, #bae6fd);
+    }
+    body.light-theme nav a {
+      color: #1e3a8a;
+    }
+    body.light-theme nav a:hover {
+      color: #3b82f6;
+    }
+    body.light-theme a {
+      color: #2563eb;
+    }
+    body.light-theme a:hover {
+      color: #1d4ed8;
+    }
+    body.light-theme .button.secondary {
+      color: #1e3a8a;
+      border: 2px solid #1e3a8a;
+    }
+    body.light-theme .button.secondary:hover {
+      background: rgba(30, 58, 138, 0.1);
+    }
+    body.light-theme .card .tech-stack span {
+      background: rgba(30, 58, 138, 0.1);
+      color: #1e3a8a;
     }
   </style>
 </head>
 <body>
-  <header>
+  <!-- Theme Toggle Button -->
+  <div class="theme-toggle" id="themeToggle">
+    <i class="fas fa-moon"></i>
+  </div>
+
+  <!-- Profile Picture Button -->
+  <div class="profile-btn" id="profileBtn">
+    <img src="me.png" alt="Praveen K S">
+  </div>
+
+  <!-- Left Slider Panel with Name -->
+  <div class="name-panel" id="namePanel">
+    <div class="profile-image-container">
+      <img src="me.png" alt="Praveen K S">
+    </div>
     <h1>Praveen K S</h1>
-    <p>AI & ML Engineer | Creative Technologist</p>
-    <nav>
-      <a href="#about"><i class="fas fa-user"></i> About</a>
-      <a href="#skills"><i class="fas fa-code"></i> Skills</a>
-      <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
-      <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
-      <a href="#certs"><i class="fas fa-certificate"></i> Certifications</a>
-      <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
-    </nav>
-  </header>
-
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="section-divider"></div>
-    <div style="max-width: 800px; margin: 0 auto;">
-      <p>
-        I'm a passionate AI/ML Engineer currently pursuing my B.E in Computer Science with specialization in Artificial Intelligence and Machine Learning at Vel Tech High Tech. With a strong foundation in Python, machine learning algorithms, and real-time application development, I thrive on building intelligent systems that solve real-world problems.
-      </p>
-      <p>
-        My expertise spans across deep learning, computer vision, and natural language processing. I enjoy participating in hackathons and collaborative projects that challenge me to push the boundaries of what's possible with AI. My goal is to bridge the gap between cutting-edge research and practical applications that make a difference.
-      </p>
-      <div style="text-align: center; margin-top: 30px;">
-        <a href="#contact" class="button">Get In Touch</a>
-        <a href="#projects" class="button secondary">View My Work</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="skills">
-    <h2>Skills & Tools</h2>
-    <div class="section-divider"></div>
-    <div class="grid">
-      <div class="card">
-        <h3>Programming</h3>
-        <p>Python, Java, C, JavaScript, HTML/CSS</p>
-      </div>
-      <div class="card">
-        <h3>Machine Learning</h3>
-        <p>PyTorch, TensorFlow, Keras, Scikit-learn, OpenCV</p>
-      </div>
-      <div class="card">
-        <h3>Data Science</h3>
-        <p>Pandas, NumPy, Matplotlib, Seaborn, NLTK</p>
-      </div>
-      <div class="card">
-        <h3>Development</h3>
-        <p>Git, Docker, Flask, Streamlit, Tkinter</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="projects">
-    <h2>Featured Projects</h2>
-    <div class="section-divider"></div>
-    <div class="grid">
-      <div class="card">
-        <h3>Sentiment-X</h3>
-        <p>Advanced multimodal sentiment analysis desktop application that combines facial expression recognition, audio tone analysis, and text sentiment analysis for comprehensive emotion detection.</p>
-        <div class="tech-stack">
-          <span>PyTorch</span>
-          <span>CNN</span>
-          <span>Transformers</span>
-          <span>Tkinter</span>
-          <span>OpenCV</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="button" style="padding: 8px 16px; font-size: 0.9rem;">View Demo</a>
-          <a href="#" class="button secondary" style="padding: 8px 16px; font-size: 0.9rem;">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <h3>Smart Object Color Detector</h3>
-        <p>Interactive web application that analyzes images and videos to detect dominant colors, creating color palettes with HEX/RGB values in real-time using computer vision techniques.</p>
-        <div class="tech-stack">
-          <span>OpenCV</span>
-          <span>Streamlit</span>
-          <span>K-Means</span>
-          <span>Python</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="button" style="padding: 8px 16px; font-size: 0.9rem;">View Demo</a>
-          <a href="#" class="button secondary" style="padding: 8px 16px; font-size: 0.9rem;">GitHub</a>
-        </div>
-      </div>
-      <div class="card">
-        <h3>AI Resume Ranker</h3>
-        <p>Intelligent resume screening tool that uses NLP to analyze and rank resumes based on experience, skills, keywords, and structure to match job descriptions.</p>
-        <div class="tech-stack">
-          <span>Flask</span>
-          <span>NLTK</span>
-          <span>Scikit-learn</span>
-          <span>Spacy</span>
-        </div>
-        <div class="project-links">
-          <a href="#" class="button" style="padding: 8px 16px; font-size: 0.9rem;">View Demo</a>
-          <a href="#" class="button secondary" style="padding: 8px 16px; font-size: 0.9rem;">GitHub</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="education">
-    <h2>Education</h2>
-    <div class="section-divider"></div>
-    <div class="timeline">
-      <div class="timeline-item left">
-        <div class="timeline-content">
-          <h3>Vel Tech High Tech</h3>
-          <div class="timeline-date">2022 - 2026</div>
-          <p>B.E in Computer Science and Engineering (AI & ML Specialization)</p>
-          <p>CGPA: 8.5/10 (Current)</p>
-        </div>
-      </div>
-      <div class="timeline-item right">
-        <div class="timeline-content">
-          <h3>Higher Secondary Education</h3>
-          <div class="timeline-date">2020 - 2022</div>
-          <p>Computer Science with Mathematics</p>
-          <p>Percentage: 92%</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section id="certs">
-    <h2>Certifications</h2>
-    <div class="section-divider"></div>
-    <div class="grid">
-      <div class="card">
-        <h3>Joy of Computing Using Python</h3>
-        <p>NPTEL Certification (Jan–Apr 2024)</p>
-        <p>Covered Python programming fundamentals and practical applications</p>
-      </div>
-      <div class="card">
-        <h3>Deep Learning</h3>
-        <p>NPTEL by IIT Ropar (Jul–Oct 2024)</p>
-        <p>Advanced concepts in neural networks, CNNs, RNNs, and Transformers</p>
-      </div>
-      <div class="card">
-        <h3>Mastering Machine Learning with Python</h3>
-        <p>Udemy Certification</p>
-        <p>Comprehensive coverage of ML algorithms and implementation</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h2>Let's Connect</h2>
-    <div class="section-divider"></div>
-    <div style="max-width: 600px; margin: 0 auto; text-align: center;">
-      <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
-      <div style="margin-top: 30px; text-align: left; background: rgba(255,255,255,0.1); padding: 25px; border-radius: 12px;">
-        <p><i class="fas fa-envelope"></i> Email: <a href="mailto:praveenks15326@gmail.com">praveenks15326@gmail.com</a></p>
-        <p><i class="fas fa-phone"></i> Phone: +91 93613 56005</p>
-        <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/Praveen7123" target="_blank">github.com/Praveen7123</a></p>
-        <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://linkedin.com/in/praveenks" target="_blank">linkedin.com/in/praveenks</a></p>
-      </div>
-      <div class="social-links">
-        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-medium"></i></a>
-        <a href="#" target="_blank"><i class="fab fa-kaggle"></i></a>
-      </div>
-    </div>
-  </section>
-
-  <footer>
-    <p>&copy; 2025 Praveen K S. All rights reserved.</p>
+    <p>AI & ML Engineer</p>
+    <div class="section-divider" style="width: 50px; margin: 10px auto 20px;"></div>
+    <p>Building intelligent solutions with cutting-edge technology</p>
     <div class="social-links">
-      <a href="mailto:praveenks15326@gmail.com"><i class="fas fa-envelope"></i></a>
       <a href="https://github.com/Praveen7123" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="https://linkedin.com/in/praveenks" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.linkedin.com/in/praveen-ks-661646302/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="mailto:praveenks15326@gmail.com"><i class="fas fa-envelope"></i></a>
+      <a href="tel:+919361356005"><i class="fas fa-phone"></i></a>
     </div>
-  </footer>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-content" id="mainContent">
+    <header>
+      <nav>
+        <a href="#about"><i class="fas fa-user"></i> About</a>
+        <a href="#skills"><i class="fas fa-code"></i> Skills</a>
+        <a href="#projects"><i class="fas fa-project-diagram"></i> Projects</a>
+        <a href="#education"><i class="fas fa-graduation-cap"></i> Education</a>
+        <a href="#certs"><i class="fas fa-certificate"></i> Certifications</a>
+        <a href="#contact"><i class="fas fa-envelope"></i> Contact</a>
+      </nav>
+    </header>
+
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="section-divider"></div>
+      <div style="max-width: 800px; margin: 0 auto;">
+        <p>
+          I'm a passionate AI/ML Engineer currently pursuing my B.E in Computer Science with specialization in Artificial Intelligence and Machine Learning at Vel Tech High Tech. With a strong foundation in Python, machine learning algorithms, and real-time application development, I thrive on building intelligent systems that solve real-world problems.
+        </p>
+        <p>
+          My expertise spans across deep learning, computer vision, and natural language processing. I enjoy participating in hackathons and collaborative projects that challenge me to push the boundaries of what's possible with AI. My goal is to bridge the gap between cutting-edge research and practical applications that make a difference.
+        </p>
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="#contact" class="button">Get In Touch</a>
+          <a href="#projects" class="button secondary">View My Work</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <h2>Skills & Tools</h2>
+      <div class="section-divider"></div>
+      <div class="grid">
+        <div class="card">
+          <h3>Programming</h3>
+          <p>Python, Java, C, JavaScript, HTML/CSS</p>
+        </div>
+        <div class="card">
+          <h3>Machine Learning</h3>
+          <p>PyTorch, TensorFlow, Keras, Scikit-learn, OpenCV</p>
+        </div>
+        <div class="card">
+          <h3>Data Science</h3>
+          <p>Pandas, NumPy, Matplotlib, Seaborn, NLTK</p>
+        </div>
+        <div class="card">
+          <h3>Development</h3>
+          <p>Git, Docker, Flask, Streamlit, Tkinter</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <h2>Featured Projects</h2>
+      <div class="section-divider"></div>
+      <div class="grid">
+        <div class="card">
+          <h3>Sentiment-X</h3>
+          <p>Advanced multimodal sentiment analysis desktop application that combines facial expression recognition, audio tone analysis, and text sentiment analysis for comprehensive emotion detection.</p>
+          <div class="tech-stack">
+            <span>PyTorch</span>
+            <span>CNN</span>
+            <span>Transformers</span>
+            <span>Tkinter</span>
+            <span>OpenCV</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="button" style="padding: 8px 16px; font-size: 0.9rem;">View Demo</a>
+            <a href="https://github.com/Praveen7123/SentimentX-A-Multimodal-AI-System-for-Emotion-Recognition" class="button secondary" style="padding: 8px 16px; font-size: 0.9rem;">GitHub</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Smart Object Color Detector</h3>
+          <p>Interactive web application that analyzes images and videos to detect dominant colors, creating color palettes with HEX/RGB values in real-time using computer vision techniques.</p>
+          <div class="tech-stack">
+            <span>OpenCV</span>
+            <span>Streamlit</span>
+            <span>Python</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="button" style="padding: 8px 16px; font-size: 0.9rem;">View Demo</a>
+            <a href="https://github.com/Praveen7123/COLOR_DETECTION" class="button secondary" style="padding: 8px 16px; font-size: 0.9rem;">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <h2>Education</h2>
+      <div class="section-divider"></div>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <h3>Vel Tech High Tech</h3>
+            <div class="timeline-date">2023 - 2027</div>
+            <p>B.E in Computer Science and Engineering (AI & ML Specialization)</p>
+          </div>
+        </div>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <h3>Higher Secondary Education</h3>
+            <div class="timeline-date">2022 - 2023</div>
+            <p>Biology with mathematics</p>
+            <p>Percentage: 90.5%</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="certs">
+      <h2>Certifications</h2>
+      <div class="section-divider"></div>
+      <div class="grid">
+        <div class="card">
+          <h3>Joy of Computing Using Python</h3>
+          <p>NPTEL Certification (Jan–Apr 2024)</p>
+          <p>Covered Python programming fundamentals and practical applications</p>
+           <a href="https://www.linkedin.com/posts/praveen-ks-661646302_python-joyofcomputing-nptel-activity-7335529359014875136-alNN?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFiGbt4BQ8ZeYjrBREYfTSazdMCSp4d30Aw" class="button" style="padding: 8px 16px; font-size: 0.9rem;">Certificate</a>         
+        </div>
+        <div class="card">
+          <h3>Deep Learning</h3>
+          <p>NPTEL by IIT Ropar (Jul–Oct 2024)</p>
+          <p>Advanced concepts in neural networks, CNNs, RNNs, and Transformers</p>
+           <a href="https://www.linkedin.com/posts/praveen-ks-661646302_deeplearning-iitropar-nptel-activity-7335528243535523840-g03h?utm_source=share&utm_medium=member_desktop&rcm=ACoAAFiGbt4BQ8ZeYjrBREYfTSazdMCSp4d30Aw" class="button" style="padding: 8px 16px; font-size: 0.9rem;">Certificate</a>       
+        </div>
+    </section>
+
+    <section id="contact">
+      <h2>Let's Connect</h2>
+      <div class="section-divider"></div>
+      <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+        <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your vision.</p>
+        <div style="margin-top: 30px; text-align: left; background: rgba(255,255,255,0.1); padding: 25px; border-radius: 12px;">
+          <p><i class="fas fa-envelope"></i> Email: <a href="mailto:praveenks15326@gmail.com">praveenks15326@gmail.com</a></p>
+          <p><i class="fas fa-phone"></i> Phone: +91 93613 56005</p>
+          <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/Praveen7123" target="_blank">github.com/Praveen7123</a></p>
+          <p><i class="fab fa-linkedin"></i> LinkedIn: <a href="https://linkedin.com/in/praveenks" target="_blank">linkedin.com/in/praveenks</a></p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Praveen K S. All rights reserved.</p>
+      <div class="social-links">
+        <a href="mailto:praveenks15326@gmail.com"><i class="fas fa-envelope"></i></a>
+        <a href="https://github.com/Praveen7123" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/praveen-ks-661646302/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const profileBtn = document.getElementById('profileBtn');
+    const namePanel = document.getElementById('namePanel');
+    const mainContent = document.getElementById('mainContent');
+    const themeToggle = document.getElementById('themeToggle');
+    const body = document.body;
+
+    // Toggle left panel
+    profileBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      namePanel.classList.toggle('active');
+      mainContent.classList.toggle('shifted');
+      profileBtn.classList.toggle('hidden');
+    });
+
+    // Close panel when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!namePanel.contains(e.target) && e.target !== profileBtn) {
+        namePanel.classList.remove('active');
+        mainContent.classList.remove('shifted');
+        profileBtn.classList.remove('hidden');
+      }
+    });
+
+    // Theme toggle functionality
+    themeToggle.addEventListener('click', () => {
+      body.classList.toggle('light-theme');
+      
+      // Change icon based on theme
+      const icon = themeToggle.querySelector('i');
+      if (body.classList.contains('light-theme')) {
+        icon.classList.remove('fa-moon');
+        icon.classList.add('fa-sun');
+      } else {
+        icon.classList.remove('fa-sun');
+        icon.classList.add('fa-moon');
+      }
+    });
+
+    // Check for saved theme preference
+    if (localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-theme');
+      themeToggle.querySelector('i').classList.remove('fa-moon');
+      themeToggle.querySelector('i').classList.add('fa-sun');
+    }
+
+    // Save theme preference
+    themeToggle.addEventListener('click', () => {
+      if (body.classList.contains('light-theme')) {
+        localStorage.setItem('theme', 'light');
+      } else {
+        localStorage.setItem('theme', 'dark');
+      }
+    });
+  </script>
 </body>
 </html>
